@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+int main() {
+    char s[100];
+    int n, i, count = 0;
+
+    printf("Enter the string: ");
+    scanf("%s", s);
+
+    printf("Enter the number of characters: ");
+    scanf("%d", &n);
+
+    int len = 0;
+    while (s[len] != '\0') {
+        len++;
+    }
+
+
+    if (len < n) {
+        int extend = n - len;
+        for (i = 0; i < extend; i++) {
+            s[len + i] = s[i];
+        }
+        s[n] = '\0';
+    }
+
+    for (i = 0; i < n; i++) {
+        if (s[i] == 'a') {
+            count++;
+        }
+    }
+
+    printf("The number of letter a's in the first %d letters of the given string is %d\n", n, count);
+
+    return 0;
+}
+
+/*Mathematical Representation:
+
+To represent this mathematically, we can use the following formula:
+Occurrences of ’a’
+=
+Total number of ’a’s in the string
+Total number of characters in the string
+×
+Specified length
+Occurrences of ’a’= 
+Total number of characters in the string
+Total number of ’a’s in the string
+
+ ×Specified length
+Applying this formula to our case:
+Occurrences of ’a’
+=
+1
+3
+×
+6
+Occurrences of ’a’= 
+3
+1
+​
+ ×6
+Solving:
+Occurrences of ’a’
+=
+2
+Occurrences of ’a’=2 */
+
