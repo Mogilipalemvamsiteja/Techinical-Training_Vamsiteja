@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int unboundedKnapsack(int k, int arr[], int n) {
+    int dp[k + 1];
+    dp[0] = 0;
+
+    for (int i = 1; i <= k; i++) {
+        dp[i] = 0;
+        for (int j = 0; j < n; j++) {
+            if (arr[j] <= i) {
+                dp[i] = max(dp[i], dp[i - arr[j]] + arr[j]);
+            }
+        }
+    }
+
+    return dp[k];
+}
+
+int main() {
+    int t;
+    printf("Enter the number of test cases: ");
+    scanf("%d", &t);
+
+    while (t--) {
+        int n, k;
+        printf("Enter the length of array and the target sum: ");
+        scanf("%d %d", &n, &k);
+
+        int arr[n];
+        printf("Enter %d space-separated integers: ", n);
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &arr[i]);
+        }
+
+        int result = unboundedKnapsack(k, arr, n);
+        printf("Maximum sum nearest to %d: %d\n", k, result);
+    }
+
+    return 0;
+}
+
